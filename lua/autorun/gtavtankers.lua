@@ -2,8 +2,8 @@
 local light_table = {
 	ModernLights = true,
 	-- projected texture / lamp pos   - front
-	L_HeadLampPos = Vector( 110, 24, 0 ),
-	L_HeadLampAng = Angle(10,5,0),
+	L_HeadLampPos = Vector( 0, 0, 0 ),
+	L_HeadLampAng = Angle(0,90,0),
 	R_HeadLampPos = Vector( 110, -24, 0 ),
 	R_HeadLampAng = Angle(10,-5,0),
 	
@@ -13,60 +13,37 @@ local light_table = {
 	R_RearLampPos = Vector(-145,-26,5),
 	R_RearLampAng = Angle(25,180,0),
 	
-	Headlight_sprites = {   -- lowbeam
-		{pos = Vector(114.44,32.166,-0.984),size = 30},
-		{pos = Vector(114.44,-32.166,-0.984),size = 30},		
-		{pos = Vector(114.44,24.628,-0.984),size = 30},
-		{pos = Vector(114.44,-24.628,-0.984),size = 30},
-	},
-	Headlamp_sprites = {   -- highbeam
-		{pos = Vector(114.44,32.166,-0.984),size = 30},
-		{pos = Vector(114.44,-32.166,-0.984),size = 30},		
-		{pos = Vector(114.44,24.628,-0.984),size = 30},
-		{pos = Vector(114.44,-24.628,-0.984),size = 30},
-		--no roof :<
-	},
-	Rearlight_sprites = {	--taillights
-		{pos = Vector(-137.011,29.776,5.71),color = Color( 135,0,0,255),size = 25},
-		{pos = Vector(-137.011,-29.776,5.71),color = Color( 135,0,0,255),size = 25},
-		{pos = Vector(-137.011,29.776,5.71),color = Color( 135,0,0,255),size = 35},
-		{pos = Vector(-137.011,-29.776,5.71),color = Color( 135,0,0,255),size = 35},
+	Headlight_sprites = {},
+	Headlamp_sprites = {},
+	Rearlight_sprites = {
+		{pos = Vector(-244,35.16,-53.69),size = 25},
+		{pos = Vector(-244,-35.16,-53.69),size = 25},
 	},
 	Brakelight_sprites = {
-		{pos = Vector(-137.011,15.498,5.71),color = Color( 135,0,0,255),size = 25},
-		{pos = Vector(-137.011,-15.498,5.71),color = Color( 135,0,0,255),size = 25},		
-		{pos = Vector(-137.011,15.498,5.71),color = Color( 135,0,0,255),size = 35},
-		{pos = Vector(-137.011,-15.498,5.71),color = Color( 135,0,0,255),size = 35},
-
+		{pos = Vector(-244,27.99,-53.69),size = 25},
+		{pos = Vector(-244,-27.99,-53.69),size = 25},
 	},
 	Reverselight_sprites = {
-		{pos = Vector(-137.011,22.669,5.71),size = 25},
-		{pos = Vector(-137.011,-22.669,5.71),size = 25},
-
+		{pos = Vector(-244,-10.57,-53.69),size = 25},
+		{pos = Vector(-244,10.57,-53.69),size = 25},
 	},
-	FogLight_sprites = {
-		-- {pos = Vector(97.471,-16.515,24.158),size = 8, OnBodyGroups = { [4] = {0} } },
-
+	FogLight_sprites = {},
+	Turnsignal_sprites = {
+		Right = {         --V Negitive is Right
+		{pos = Vector(-244,-42.29,-53.69),size = 25},
+		},
+		Left = {        --V Positive is left
+		{pos = Vector(-244,42.29,-53.69),size = 25},
+		},
 	},
 	DelayOn = 0,
 	DelayOff = 0,
-	Turnsignal_sprites = {
-		Right = {         --V Negitive is Right
-		{pos = Vector(-137.011,-29.776,5.71),color = Color( 135,0,0,255),size = 25},
-		{pos = Vector(-137.011,-29.776,5.71),color = Color( 135,0,0,255),size = 35},
-		},
-		Left = {        --V Positive is left
-		{pos = Vector(-137.011,29.776,5.71),color = Color( 135,0,0,255),size = 25},
-		{pos = Vector(-137.011,29.776,5.71),color = Color( 135,0,0,255),size = 35},
-		},
-	},
 }
-list.Set( "simfphys_lights", "armytrailer", light_table)
+list.Set( "simfphys_lights", "gtavtankers", light_table)
 
- 
 local V = {
-	Name = "Army Trailer",
-	Model = "models/notakid/gtavredux/armytrailer/armytrailer_main_ver2.mdl",
+	Name = "Army Tanker",
+	Model = "models/notakid/gtavredux/armytanker/armytanker_main.mdl",
 	Class = "gmod_sent_vehicle_fphysics_base",
 	Category = "GTA V Trailers",
 	SpawnOffset = Vector(0,0,120),
@@ -74,37 +51,42 @@ local V = {
 
 	FLEX = {
 		Trailers = {
-			inputPos = Vector(320.6,0,-5),
+			inputPos = Vector(174.1,0,-58),
 			inputType = "axis",
-			outputPos = Vector(-348,0,-5),
-			outputType = "ballsocket",
 		}
 	},
 
 	Members = {
-		Mass = 2000,
+		Mass = 1800,
+		
+       NAKTankerHB = {
+            Tank = {
+                OBBMax = Vector(228,55,43),
+                OBBMin = Vector(-243,-55,-44),
+            },
+		},
 
         -- AirFriction = -8000,
         OnSpawn = function(ent)
 			--//color using Proxy Color Tool if possible, otherwise a random color using normal color tool
 			NAK.SpawnColor( ent, 1 )
 			--//entity, popped bodygroups, repaired bodygroups, popped ghost wheel position (negitive), popped suspension height
+			NAK.DisableUse(ent)
 			NAK.TireOverride( ent, "01", "00", 9, 4 )
-			NAK.TrailerLegs( ent, Vector(186,18,-56) )
+			NAK.TrailerLegs( ent, Vector(62,18,-115) )
+			NAK.TankerHitbox( ent )
         end,
 
-		LightsTable = "armytrailer",
+		LightsTable = "gtavtankers",
 	
 		CustomWheels = true,
 		CustomSuspensionTravel = 10,
 		
 		CustomWheelModel = "models/notakid/gtavredux/armytrailer/armytrailer_wheel.mdl",
-		CustomWheelPosFL = Vector(-199,-41,-22),
-		CustomWheelPosFR = Vector(-199,41,-22),
-		CustomWheelPosML = Vector(-252.2,-41,-22),
-		CustomWheelPosMR = Vector(-252.2,41,-22),
-		CustomWheelPosRL = Vector(-305,-41,-22),
-		CustomWheelPosRR = Vector(-305,41,-22),
+		CustomWheelPosFL = Vector(-140.5,-41,-80),
+		CustomWheelPosFR = Vector(-140.5,41,-80),
+		CustomWheelPosRL = Vector(-193.2,-41,-80),
+		CustomWheelPosRR = Vector(-193.2,41,-80),
 		CustomWheelAngleOffset = Angle(180,-90,180),
 		FrontWheelRadius = 22,
 		RearWheelRadius = 22,
@@ -122,7 +104,7 @@ local V = {
 		SeatPitch = 0,
 		SeatYaw = 90,
 
-		EnginePos = Vector(87.232,0,11.828),
+		EnginePos = Vector(0,0,-20),
 
 		FuelType = FUELTYPE_NONE,
 		FuelFillPos = Vector(0,0,0),
@@ -182,29 +164,27 @@ local V = {
 		Gears = {-0.12,0,0.12,0.21,0.32,0.42,0.5}
 	}
 }
-list.Set( "simfphys_vehicles", "sim_fphys_gtav_armytrailer", V )
-
---//LAZY DUPLICATION OF TABLE (two versions of model)
-
+list.Set( "simfphys_vehicles", "sim_fphys_gtav_armytanker", V )
+--//LAZY DUPLICATION OF TABLE
 local V2 = {}
+local V3 = {}
+local V4 = {}
 for k,v in pairs(V) do
     V2[k] = v
+    V3[k] = v
+    V4[k] = v
 end
-
-V2.Name = "Army Trailer Hook Collision"
-V2.Model = "models/notakid/gtavredux/armytrailer/armytrailer_main.mdl"
-V2.Category = "GTA V Trailers"
-
-list.Set( "simfphys_vehicles", "sim_fphys_gtav_armytrailer_ver2", V2 )
-
-
-
-
-
-
-
-
-
-
-
-
+--//Ron trailer
+V2.Name = "Ron Tanker"
+V2.Model = "models/notakid/gtavredux/tanker/tanker_main.mdl"
+V2.Members.OnSpawn = function(ent)NAK.TireOverride( ent, "01", "00", 9, 4 )NAK.DisableUse(ent)NAK.TrailerLegs( ent, Vector(62,18,-115) )NAK.TankerHitbox( ent )end
+list.Set( "simfphys_vehicles", "sim_fphys_gtav_tanker", V2 )
+--//Heist trailer
+V3.Name = "Civ Tanker"
+V3.Model = "models/notakid/gtavredux/tanker2/tanker2_main.mdl"
+V3.Members.OnSpawn = function(ent)NAK.TireOverride( ent, "01", "00", 9, 4 )NAK.DisableUse(ent)NAK.TrailerLegs( ent, Vector(62,18,-115) )NAK.TankerHitbox( ent )end
+list.Set( "simfphys_vehicles", "sim_fphys_gtav_tanker2", V3 )
+--//Blank trailer
+V4.Name = "Blank Tanker"
+V4.Model = "models/notakid/gtavredux/tankerblank/tankerblank_main.mdl"
+list.Set( "simfphys_vehicles", "sim_fphys_gtav_tankerblank", V4 )

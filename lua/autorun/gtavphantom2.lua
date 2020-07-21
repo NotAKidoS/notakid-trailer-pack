@@ -105,11 +105,11 @@ list.Set( "simfphys_lights", "phantom2_lights", light_table)
 
 
 
-local Category = "GTA V"
+local Category = "GTA V Trucks"
 
 local V = {
 	Name = "Phantom Wedge",
-	Model = "models/notakid/gtavredux/phantom2_main.mdl",
+	Model = "models/notakid/gtavredux/phantom2/phantom2_main.mdl",
 	Class = "gmod_sent_vehicle_fphysics_base",
 	Category = Category,
 	SpawnOffset = Vector(0,0,50),
@@ -117,8 +117,6 @@ local V = {
 	
 	FLEX = {
 		Trailers = {
-			-- inputPos = Vector(320.6,0,-5),
-			-- inputType = "axis",
 			outputPos = Vector(-112,0,9),
 			outputType = "axis",
 		}
@@ -127,18 +125,12 @@ local V = {
 	Members = {
 		Mass = 3800,
         AirFriction = -30000,
-		
-		
+
         OnSpawn = function(ent)
-            -- if ent:GetCenterposition() != nil then
-                -- ent:SetCenterposition(Vector(-120,0,10))  -- position of center ballsocket for tow hitch(trailer coupling)
-                -- ent:SetTrailerCenterposition(Vector(100,0,0)) -- position of center ballsocket for trailer hook
-            -- end
 			NAK.SpawnColor( ent )
 			NAK.TireOverride( ent, "01", "00", 8, 2 )
         end,
-		
-		
+
 		LightsTable = "phantom_lights",
 		
 		CustomWheels = true,
