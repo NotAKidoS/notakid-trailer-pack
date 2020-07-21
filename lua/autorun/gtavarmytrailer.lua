@@ -66,7 +66,7 @@ list.Set( "simfphys_lights", "armytrailer", light_table)
  
 local V = {
 	Name = "Army Trailer",
-	Model = "models/notakid/gtavredux/armytrailer/armytrailer_main_ver2.mdl",
+	Model = "models/notakid/gtavredux/armytrailer/armytrailer_main.mdl",
 	Class = "gmod_sent_vehicle_fphysics_base",
 	Category = "GTA V Trailers",
 	SpawnOffset = Vector(0,0,120),
@@ -186,16 +186,16 @@ list.Set( "simfphys_vehicles", "sim_fphys_gtav_armytrailer", V )
 
 --//LAZY DUPLICATION OF TABLE (two versions of model)
 
-local V2 = {}
-for k,v in pairs(V) do
-    V2[k] = v
-end
+-- local V2 = {}
+-- for k,v in pairs(V) do
+    -- V2[k] = v
+-- end
 
-V2.Name = "Army Trailer Hook Collision"
-V2.Model = "models/notakid/gtavredux/armytrailer/armytrailer_main.mdl"
-V2.Category = "GTA V Trailers"
+-- V2.Name = "Army Trailer Hook Collision"
+-- V2.Model = "models/notakid/gtavredux/armytrailer/armytrailer_main.mdl"
+-- V2.Category = "GTA V Trailers"
 
-list.Set( "simfphys_vehicles", "sim_fphys_gtav_armytrailer_ver2", V2 )
+-- list.Set( "simfphys_vehicles", "sim_fphys_gtav_armytrailer_ver2", V2 )
 
 
 
