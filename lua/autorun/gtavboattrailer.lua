@@ -37,61 +37,56 @@ local light_table = {
 	DelayOn = 0,
 	DelayOff = 0,
 }
-list.Set( "simfphys_lights", "gtavtankersarmy", light_table)
+list.Set( "simfphys_lights", "gtavboattrailer", light_table)
 
 local V = {
-	Name = "Army Tanker",
-	Model = "models/notakid/gtavredux/armytanker/armytanker_main.mdl",
-	Class = "Utility",
+	Name = "Boat Trailer",
+	Model = "models/notakid/gtavredux/boattrailer/boattrailer_main.mdl",
+	Class = "gmod_sent_vehicle_fphysics_base",
 	Category = "GTA V Trailers",
 	SpawnOffset = Vector(0,0,120),
 	SpawnAngleOffset = 90,
 
 	FLEX = {
 		Trailers = {
-			inputPos = Vector(174.1,0,-58),
-			inputType = "axis",
+			inputPos = Vector(133,0,-21),
+			inputType = "ballsocket",
 		}
 	},
 
 	Members = {
-		Mass = 1800,
-		
-       NAKTankerHB = {
+		Mass = 500,
+		NAKTankerHB = {
             Tank = {
                 OBBMax = Vector(228,55,43),
                 OBBMin = Vector(-243,-55,-44),
             },
 		},
-
         -- AirFriction = -8000,
         OnSpawn = function(ent)
-			--//color using Proxy Color Tool if possible, otherwise a random color using normal color tool
-			NAK.SpawnColor( ent, 1 )
-			--//entity, popped bodygroups, repaired bodygroups, popped ghost wheel position (negitive), popped suspension height
 			NAK.DisableUse(ent)
-			NAK.TireOverride( ent, "01", "00", 9, 4 )
-			NAK.TrailerLegs( ent, Vector(62,18,-115), 60 )
-			NAK.TankerHitbox( ent )
+			NAK.TireOverride( ent, "01", "00", 8, 18 )
+			NAK.TrailerLegs( ent, Vector(100,0,-37), 25, true )
         end,
 
-		LightsTable = "gtavtankersarmy",
+		LightsTable = "gtavboattrailer",
 	
 		CustomWheels = true,
 		CustomSuspensionTravel = 10,
 		
-		CustomWheelModel = "models/notakid/gtavredux/armytrailer/armytrailer_wheel.mdl",
-		CustomWheelPosFL = Vector(-140.5,-41,-80),
-		CustomWheelPosFR = Vector(-140.5,41,-80),
-		CustomWheelPosRL = Vector(-193.2,-41,-80),
-		CustomWheelPosRR = Vector(-193.2,41,-80),
+		CustomWheelModel = "models/props_junk/PopCan01a.mdl",
+		CustomWheelModel_R = "models/notakid/gtavredux/boattrailer/boattrailer_wheel.mdl",
+		CustomWheelPosFL = Vector(-81,0,-22.1),
+		CustomWheelPosFR = Vector(-81,0,-22.1),
+		CustomWheelPosRL = Vector(-82.4,-41,-30),
+		CustomWheelPosRR = Vector(-82.4,41,-30),
 		CustomWheelAngleOffset = Angle(180,-90,180),
-		FrontWheelRadius = 22,
-		RearWheelRadius = 22,
+		FrontWheelRadius = 5,
+		RearWheelRadius = 15,
 		
 		StrengthenSuspension = true,
 		
-		CustomMassCenter = Vector(180,0,-5),
+		CustomMassCenter = Vector(10,0,0),
 		
 		CustomSteerAngle = 32,
 		FirstPersonViewPos = Vector(0,-12,7),	
@@ -149,12 +144,4 @@ local V = {
 		Gears = {-1,0,1}
 	}
 }
-list.Set( "simfphys_vehicles", "sim_fphys_gtav_armytanker", V )
---//LAZY DUPLICATION OF TABLE
-local V2 = {}
-for k,v in pairs(V) do
-    V2[k] = v
-end
-V2.Name = "Blank Tanker"
-V2.Model = "models/notakid/gtavredux/tankerblank/tankerblank_main.mdl"
-list.Set( "simfphys_vehicles", "sim_fphys_gtav_tankerblank", V2 )
+list.Set( "simfphys_vehicles", "sim_fphys_gtav_boattrailer", V )

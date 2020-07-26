@@ -1,7 +1,7 @@
 local V = {
 	Name = "Phantom",
 	Model = "models/notakid/gtavredux/phantom/phantom_main.mdl",
-	Class = "gmod_sent_vehicle_fphysics_base",
+	Class = "Commercial",
 	Category = "GTA V Trucks",
 	SpawnOffset = Vector(0,0,50),
 	SpawnAngleOffset = 90,
@@ -20,6 +20,10 @@ local V = {
 	},
 
 	Members = {
+		OnSpawn = function(ent)
+			NAK.SpawnColor( ent, 1 )
+			NAK.TireOverride( ent, "01", "00", 8, 5 )
+		end,
 		Mass = 3400,
 		LightsTable = "phantom_lights",
 		CustomWheels = true,
@@ -105,7 +109,7 @@ local V = {
 		Turbocharged = false,
 		Supercharged = false,
 
-		snd_horn = "notakid/horns/truck_horn1.wav",
+		snd_horn = "notakid/horns/truck_horn2.wav",
 		EngineSoundPreset = 8,
 
 		DifferentialGear = 0.3,

@@ -67,7 +67,7 @@ list.Set( "simfphys_lights", "armytrailer", light_table)
 local V = {
 	Name = "Army Trailer",
 	Model = "models/notakid/gtavredux/armytrailer/armytrailer_main.mdl",
-	Class = "gmod_sent_vehicle_fphysics_base",
+	Class = "Utility",
 	Category = "GTA V Trailers",
 	SpawnOffset = Vector(0,0,120),
 	SpawnAngleOffset = 90,
@@ -90,7 +90,7 @@ local V = {
 			NAK.SpawnColor( ent, 1 )
 			--//entity, popped bodygroups, repaired bodygroups, popped ghost wheel position (negitive), popped suspension height
 			NAK.TireOverride( ent, "01", "00", 9, 4 )
-			NAK.TrailerLegs( ent, Vector(186,18,-56) )
+			NAK.TrailerLegs( ent, Vector(186,18,-56), 60)
         end,
 
 		LightsTable = "armytrailer",
@@ -131,14 +131,14 @@ local V = {
 		
 		FrontHeight = 4, 
 		FrontWheelMass = 200,
-		FrontConstant = 25000,
-		FrontDamping = 2000,
+		FrontConstant = 80000,
+		FrontDamping = 3500,
 		FrontRelativeDamping = 2500,
 
 		RearHeight = 4, 
 		RearWheelMass = 200,
-		RearConstant = 25000,
-		RearDamping = 2000,
+		RearConstant = 80000,
+		RearDamping = 3500,
 		RearRelativeDamping = 2500,
 		
 		FastSteeringAngle = 10,

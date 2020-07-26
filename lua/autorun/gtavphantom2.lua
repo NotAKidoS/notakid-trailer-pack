@@ -103,21 +103,17 @@ local light_table = {
 }
 list.Set( "simfphys_lights", "phantom2_lights", light_table)
 
-
-
-local Category = "GTA V Trucks"
-
 local V = {
 	Name = "Phantom Wedge",
 	Model = "models/notakid/gtavredux/phantom2/phantom2_main.mdl",
-	Class = "gmod_sent_vehicle_fphysics_base",
-	Category = Category,
+	Class = "Commercial",
+	Category = "GTA V Trucks",
 	SpawnOffset = Vector(0,0,50),
 	SpawnAngleOffset = 90,
-	
+
 	FLEX = {
 		Trailers = {
-			outputPos = Vector(-112,0,9),
+			outputPos = Vector(-113,0,11),
 			outputType = "axis",
 		}
 	},
@@ -126,10 +122,10 @@ local V = {
 		Mass = 3800,
         AirFriction = -30000,
 
-        OnSpawn = function(ent)
-			NAK.SpawnColor( ent )
-			NAK.TireOverride( ent, "01", "00", 8, 2 )
-        end,
+		OnSpawn = function(ent)
+			NAK.SpawnColor( ent, 1 )
+			NAK.TireOverride( ent, "01", "00", 8, 5 )
+		end,
 
 		LightsTable = "phantom_lights",
 		
@@ -149,23 +145,13 @@ local V = {
 		FrontWheelRadius = 21,
 		RearWheelRadius = 20,
 		
-		CustomMassCenter = Vector(50,0,-5),
-		
-		CustomSteerAngle = 30,
+		-- CustomMassCenter = Vector(50,0,-5),
 		
 		FirstPersonViewPos = Vector(0,-10,10),		
 		SeatOffset = Vector(62,-23,48),
 		SeatPitch = 0,
 		SeatYaw = 90,
-		
-		--[[
-		ModelInfo = {
-			Bodygroups = {0,0,0,0,0,0,0},
-			Color = Color(0,31,127,255),
-			Skin = 1,
-			WheelColor = Color(100,255,255,50)
-		},
-		]]--
+
 		EnginePos = Vector(165,0,15), 
 		PassengerSeats = {
 			{
@@ -174,6 +160,7 @@ local V = {
 				
 			},
 		},
+
 		Backfire = false,
 		ExhaustPositions = {
 			{
@@ -193,62 +180,42 @@ local V = {
 				ang = Angle(90,180,0)
 			},
 		},
-		Backfire = false,
 
 		FuelType = FUELTYPE_DIESEL,
 		FuelFillPos = Vector(8.5,-55,-5),
 		FuelTankSize = 800,
 
-
 		FrontHeight = 15,
 		FrontConstant = 29000,
 		FrontDamping = 2500,
 		FrontRelativeDamping = 2500,
-		
+
 		RearHeight = 15,
 		RearConstant = 29000,
 		RearDamping = 2500,
 		RearRelativeDamping = 2500,
 		
+		TurnSpeed = 2,
+		CustomSteerAngle = 30,
 		FastSteeringAngle = 18,
 		SteeringFadeFastSpeed = 600,
-		
-		TurnSpeed = 2,
-		
-		MaxGrip = 68,
-		Efficiency = 1.5,
-		GripOffset = 3,
+		MaxGrip = 80,
+		Efficiency = 1.1,
+		GripOffset = 2,
 		BrakePower = 40,
-		
+
 		IdleRPM = 600,
 		LimitRPM = 2800,
-		PeakTorque = 240,
+		PowerBias = 0.4,
+		PeakTorque = 220,
 		PowerbandStart = 1500,
 		PowerbandEnd = 4000,
 		Turbocharged = false,
 		Supercharged = false,
-		
 
-		
-
-		
-		PowerBias = 0.5,
-		
+		snd_horn = "notakid/horns/truck_horn1.wav",
 		EngineSoundPreset = 8,
-		
-		snd_pitch = 0.8,
-		snd_idle = "simulated_vehicles/gta5_gauntlet/gauntlet_idle.wav",
-		
-		snd_low = "simulated_vehicles/gta5_gauntlet/gauntlet_low.wav",
-		snd_low_revdown = "simulated_vehicles/gta5_gauntlet/gauntlet_revdown.wav",
-		snd_low_pitch = 0.8,
-		
-		snd_mid = "simulated_vehicles/gta5_gauntlet/gauntlet_mid.wav",
-		snd_mid_gearup = "simulated_vehicles/gta5_gauntlet/gauntlet_gear.wav",
-		snd_mid_pitch = 0.8,
-		
-		snd_horn = "simfphysgtahorns/horns/semi_horn.wav",
-		
+
 		DifferentialGear = 0.3,
 		Gears = {-0.2,0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0,1.24,1.55}
 	}

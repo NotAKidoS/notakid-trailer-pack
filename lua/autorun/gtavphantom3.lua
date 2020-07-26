@@ -1,7 +1,7 @@
 local V = {
 	Name = "Phantom Custom",
 	Model = "models/notakid/gtavredux/phantom3/phantom3_main.mdl",
-	Class = "gmod_sent_vehicle_fphysics_base",
+	Class = "Commercial",
 	Category = "GTA V Trucks",
 	SpawnOffset = Vector(0,0,50),
 	SpawnAngleOffset = 90,
@@ -20,9 +20,14 @@ local V = {
 	},
 
 	Members = {
+		OnSpawn = function(ent)
+			NAK.SpawnColor( ent, 1 )
+			NAK.TireOverride( ent, "01", "00", 8, 3 )
+		end,
 		Mass = 3800,
 		LightsTable = "phantom3_lights",
 		CustomWheels = true,
+		BulletProofTires = true,
 
 		CustomSuspensionTravel = 0,
 		StrengthenSuspension = true,

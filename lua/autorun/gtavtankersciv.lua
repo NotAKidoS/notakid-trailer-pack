@@ -42,7 +42,7 @@ list.Set( "simfphys_lights", "gtavtankersciv", light_table)
 local V = {
 	Name = "Ron Tanker",
 	Model = "models/notakid/gtavredux/tanker/tanker_main.mdl",
-	Class = "gmod_sent_vehicle_fphysics_base",
+	Class = "Utility",
 	Category = "GTA V Trailers",
 	SpawnOffset = Vector(0,0,120),
 	SpawnAngleOffset = 90,
@@ -64,7 +64,7 @@ local V = {
 		},
         -- AirFriction = -8000,
         OnSpawn = function(ent)
-			NAK.DisableUse(ent)NAK.TrailerLegs( ent, Vector(62,18,-115) )NAK.TankerHitbox( ent )
+			NAK.DisableUse(ent)NAK.TrailerLegs( ent, Vector(62,18,-115), 60 )NAK.TankerHitbox( ent )
         end,
 
 		LightsTable = "gtavtankersciv",
